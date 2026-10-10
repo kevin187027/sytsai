@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="百店入口網 — 匯集100家優質店家，餐飲美食、零售購物、生活服務應有盡有。" />
-  <title>百店入口網 | 優質店家平台</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='35' width='60' height='45' rx='4' fill='%231a73e8'/%3E%3Cpath d='M30 35 Q30 20 50 20 Q70 20 70 35' fill='none' stroke='%231a73e8' stroke-width='4'/%3E%3Ccircle cx='50' cy='55' r='8' fill='%23fff'/%3E%3C/svg%3E" />
+  <meta name="description" content="社會實踐課程成果展 — 大學社會責任實踐課程各組學生作品入口網站。" />
+  <title>社會實踐課程成果展 | 學生作品入口網</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20 70 L50 25 L80 70 Z' fill='%232C5F2D'/%3E%3Crect x='35' y='70' width='30' height='12' fill='%232C5F2D'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
@@ -20,11 +20,11 @@
   <nav id="navbar" class="navbar">
     <div class="nav-container">
       <a href="#hero" class="nav-logo">
-        <span class="logo-icon">&#128722;</span>
-        <span class="logo-text">百店入口網</span>
+        <span class="logo-icon">&#127979;</span>
+        <span class="logo-text">社會實踐成果展</span>
       </a>
       <div class="nav-search">
-        <input type="text" id="searchInput" placeholder="搜尋店家名稱、分類、地區..." autocomplete="off" />
+        <input type="text" id="searchInput" placeholder="搜尋組名、計畫名稱、分類..." autocomplete="off" />
         <span class="search-icon">&#128269;</span>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false">
@@ -35,37 +35,49 @@
 
   <!-- ===== Hero ===== -->
   <section id="hero" class="hero">
-    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="hero-title">百店入口網</h1>
-      <p class="hero-subtitle">匯集 100 家優質店家，一個平台滿足您所有需求</p>
+      <p class="hero-semester" id="heroSemester">載入中...</p>
+      <h1 class="hero-title" id="heroTitle">社會實踐</h1>
+      <p class="hero-subtitle" id="heroSubtitle">大學社會責任實踐課程成果展</p>
+      <p class="hero-professor" id="heroProfessor"></p>
       <div class="hero-search">
-        <input type="text" id="heroSearchInput" placeholder="輸入店家名稱、分類或地區..." />
+        <input type="text" id="heroSearchInput" placeholder="輸入組名、計畫名稱或分類..." />
         <button id="heroSearchBtn" class="btn btn-primary">搜尋</button>
       </div>
-      <div class="hero-stats" id="heroStats">
-        <div class="hero-stat"><span class="hero-stat-num" id="statTotal">0</span><span class="hero-stat-label">店家總數</span></div>
-        <div class="hero-stat"><span class="hero-stat-num" id="statCategories">0</span><span class="hero-stat-label">分類數</span></div>
-        <div class="hero-stat"><span class="hero-stat-num" id="statCities">0</span><span class="hero-stat-label">地區數</span></div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-num" id="statGroups">0</span><span class="hero-stat-label">實踐小組</span></div>
+        <div class="hero-stat"><span class="hero-stat-num" id="statCategories">0</span><span class="hero-stat-label">議題分類</span></div>
+        <div class="hero-stat"><span class="hero-stat-num" id="statStudents">0</span><span class="hero-stat-label">參與學生</span></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== Course Info Bar ===== -->
+  <section class="course-info" id="courseInfo" style="display:none;">
+    <div class="container">
+      <div class="course-info-grid">
+        <div class="course-info-item">
+          <span class="course-info-label">開課系所</span>
+          <span class="course-info-value" id="infoDept"></span>
+        </div>
+        <div class="course-info-item">
+          <span class="course-info-label">授課教師</span>
+          <span class="course-info-value" id="infoProf"></span>
+        </div>
+        <div class="course-info-item">
+          <span class="course-info-label">學期</span>
+          <span class="course-info-value" id="infoSemester"></span>
+        </div>
+      </div>
+      <p class="course-info-desc" id="infoDesc"></p>
     </div>
   </section>
 
   <!-- ===== Category Filter Bar ===== -->
   <section class="filter-bar" id="filterBar">
     <div class="container">
-      <div class="filter-scroll">
+      <div class="filter-scroll" id="filterScroll">
         <button class="filter-chip active" data-category="all">全部</button>
-        <button class="filter-chip" data-category="餐飲美食">餐飲美食</button>
-        <button class="filter-chip" data-category="零售購物">零售購物</button>
-        <button class="filter-chip" data-category="美容美髮">美容美髮</button>
-        <button class="filter-chip" data-category="生活服務">生活服務</button>
-        <button class="filter-chip" data-category="醫療保健">醫療保健</button>
-        <button class="filter-chip" data-category="教育學習">教育學習</button>
-        <button class="filter-chip" data-category="休閒娛樂">休閒娛樂</button>
-        <button class="filter-chip" data-category="電子科技">電子科技</button>
-        <button class="filter-chip" data-category="家居裝潢">家居裝潢</button>
-        <button class="filter-chip" data-category="交通旅遊">交通旅遊</button>
       </div>
     </div>
   </section>
@@ -74,13 +86,21 @@
   <main class="main-content">
     <div class="container">
       <div class="content-header">
-        <h2 id="resultTitle">所有店家</h2>
-        <span class="result-count" id="resultCount">載入中...</span>
+        <h2 id="resultTitle">所有組別</h2>
+        <div class="content-header-right">
+          <select id="sortSelect" class="sort-select">
+            <option value="default">預設排序</option>
+            <option value="name">組名排序</option>
+            <option value="category">分類排序</option>
+            <option value="score">成績排序</option>
+          </select>
+          <span class="result-count" id="resultCount">載入中...</span>
+        </div>
       </div>
 
-      <!-- Store Grid -->
-      <div class="store-grid" id="storeGrid">
-        <div class="loading-message">正在載入店家資料...</div>
+      <!-- Group Grid -->
+      <div class="group-grid" id="groupGrid">
+        <div class="loading-message">正在載入各組作品資料...</div>
       </div>
 
       <!-- Pagination -->
@@ -89,15 +109,15 @@
       <!-- No Results -->
       <div class="no-results" id="noResults" style="display:none;">
         <span class="no-results-icon">&#128533;</span>
-        <p>找不到符合條件的店家</p>
+        <p>找不到符合條件的組別</p>
         <p class="no-results-hint">請嘗試其他關鍵字或分類</p>
       </div>
     </div>
   </main>
 
-  <!-- ===== Store Detail Modal ===== -->
+  <!-- ===== Group Detail Modal ===== -->
   <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="storeModal">
+    <div class="modal" id="groupModal">
       <button class="modal-close" id="modalClose" aria-label="關閉">&times;</button>
       <div class="modal-body" id="modalBody"></div>
     </div>
@@ -108,16 +128,16 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <h3>&#128722; 百店入口網</h3>
-          <p>匯集100家優質店家的入口平台，涵蓋餐飲、零售、服務等各類店家，讓您輕鬆找到所需。</p>
+          <h3>&#127979; 社會實踐課程成果展</h3>
+          <p>本網站為課程成果展示入口平台，各組學生作品資料以 JSON 格式儲存，由 JavaScript 動態讀取渲染。</p>
         </div>
         <div class="footer-info">
-          <h4>關於平台</h4>
-          <p>本平台為靜態網站，店家資料以 JSON 格式儲存，由 JavaScript 動態讀取渲染。</p>
+          <h4>關於本課程</h4>
+          <p>社會實踐課程引導學生走入社區，以行動研究方法回應真實社會議題，實踐大學社會責任。</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 百店入口網. All rights reserved.</p>
+        <p>&copy; 2026 社會實踐課程. All rights reserved.</p>
       </div>
     </div>
   </footer>
